@@ -17,7 +17,7 @@
     <section class="grid-container">
 
     </section>     
-    <form action="result.php" method="get">
+    <form action="result.php?file=017040&width=300&overlay=Hello" method="get">
         <label>Select Base Painting:</label>
         <select name="file" id="whichPainting">
 
