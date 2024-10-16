@@ -16,9 +16,10 @@
     <h1>Fine Art Meme Maker</h1> 
     <section class="grid-container">
         <?php
+            
             for ($count=0; $count < count($paintings); $count++){
                 $painting = $paintings[$count];
-                echo '<img src = "result.php?file=' . htmlspecialchars($painting['filename']) . '&width=100" data-value="'. htmlspecialchars($painting['filename']) .'" alt = "' . htmlspecialchars($painting['filename']) .'">' ;
+                echo '<img src= "result.php?file=' . ($painting['filename']) . '&width=100" data-value="'. ($painting['filename']) . '" alt = "' . ($painting['filename']) . '" />' ;
             }
 
         ?>
@@ -32,6 +33,7 @@
                     echo '<option value = ' . $painting['filename'] . '> ' . $painting['title'] . '</option>' ;
                 }
             ?>
+        
         </select>
         <label>Meme 1 Text:</label>
         <input type="text" name="text1" size=50 value="Default text" />
