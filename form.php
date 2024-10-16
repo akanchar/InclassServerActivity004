@@ -9,18 +9,29 @@
     <meta charset="utf-8"/>  
     <title>Lab 12</title>   
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800" rel="stylesheet">    
-    <link rel="stylesheet" href="css/ch12-proj3.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/severactivity.js"></script>
 </head>
 <body>
     <h1>Fine Art Meme Maker</h1> 
     <section class="grid-container">
+        <?php
+            for ($count=0; $count < count($paintings); $count++){
+                $painting = $paintings[$count];
+                echo '<img src = "result.php?file=' . htmlspecialchars($painting['filename']) . '&width=100" data-value="'. htmlspecialchars($painting['filename']) .'" alt = "' . htmlspecialchars($painting['filename']) .'">' ;
+            }
 
+        ?>
     </section>     
     <form action="result.php" method="get">
         <label>Select Base Painting:</label>
         <select name="file" id="whichPainting">
-
+            <?php 
+                for ($c=0; $c < count($paintings); $c++){
+                    $painting = $paintings[$c];
+                    echo '<option value = ' . $painting['filename'] . '> ' . $painting['title'] . '</option>' ;
+                }
+            ?>
         </select>
         <label>Meme 1 Text:</label>
         <input type="text" name="text1" size=50 value="Default text" />
