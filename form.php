@@ -16,12 +16,9 @@
     <h1>Fine Art Meme Maker</h1> 
     <section class="grid-container">
         <?php
-            
-            for ($count=0; $count < count($paintings); $count++){
-                $painting = $paintings[$count];
-                echo '<img src= "result.php?file=' . ($painting['filename']) . '&width=100" data-value="'. ($painting['filename']) . '" alt = "' . ($painting['filename']) . '" />' ;
-            }
-
+        foreach ($paintings as $painting) {
+            echo '<img src="result.php?file=' . $painting['filename'] . '&width=100" alt="' . $painting['title'] . '" data-value="' . $painting['filename'] . '" style="margin: 5px;">';
+        }
         ?>
     </section>     
     <form action="result.php" method="get">
@@ -30,7 +27,7 @@
             <?php 
                 for ($c=0; $c < count($paintings); $c++){
                     $painting = $paintings[$c];
-                    echo '<option value = ' . $painting['filename'] . '> ' . $painting['title'] . '</option>' ;
+                    echo '<option value = "' . $painting['filename'] . '"> ' . $painting['title'] . '</option>' ;
                 }
             ?>
         
