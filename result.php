@@ -13,7 +13,7 @@ if (!$img) {
 }
 
 $w = isset($_GET['width']) ? $_GET['width'] : 500;
-$newimg = imagescale($img,$w);
+$newimg = imagescale($img,$w,$w);
 
 $fontFile = realpath('font/Lato-Medium.ttf');
 $textColor = imagecolorallocate($newimg,255,255,255);
@@ -51,11 +51,15 @@ $imageHeight = imagesy($newimg);
 // calculate the y-cord for second line of text to be near bottom
 $bottomTextY = $imageHeight - 20;
 
-    
-imagettftext($newimg,$fontSize1, 0,10,50,$textColor,$fontFile,$text1);
-imagettftext($newimg,$fontSize2, 0,10,$bottomTextY,$textColor,$fontFile,$text2);
+if(!empty($text1)){
+    imagettftext($newimg,$fontSize1, 0,10,50,$textColor,$fontFile,$text1);
+}
 
+if(!empty($text2)){
+    imagettftext($newimg,$fontSize2, 0,10,$bottomTextY,$textColor,$fontFile,$text2);
+}
 
 imagejpeg($newimg); 
+imgd
 
 ?>

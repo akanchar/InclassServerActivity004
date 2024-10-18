@@ -1,7 +1,5 @@
 <?php
   include 'data.inc.php';
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,10 +15,11 @@
     <section class="grid-container">
         <?php
         foreach ($paintings as $painting) {
-            echo '<img src="result.php?file=' . $painting['filename'] . '&width=100" alt="' . $painting['title'] . '" data-value="' . $painting['filename'] . '" style="margin: 5px;">';
+            echo '<img src="result.php?file=' . $painting['filename'] . '&width=100&text1=&text2=&size1=&size2=" alt="' . $painting['title'] . '" data-value="' . $painting['filename'] . '" style="margin: 5px;"/>';
         }
         ?>
-    </section>     
+    </section>    
+    
     <form action="result.php" method="get">
         <label>Select Base Painting:</label>
         <select name="file" id="whichPainting">
