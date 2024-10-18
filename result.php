@@ -2,17 +2,21 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+//set header for image output
 header ('Content-Type: image/jpeg');
+
 // Load the image from the filename passed in the form
-$filename = __DIR__ . '/images/' . $_GET['file'] . '.jpg';
-$image = imagecreatefromjpeg($filename);
-$w =isset($_GET['width']) ? $_GET['width'] : 500;
-$newimg = imagescale($img,$w,$w);
-$fontFile = realpath('font/Lato-Medium.ttf');
-//check if font file exists
-if (!file_exists($fontFile)) {
-    die('Error: Font file not found');
+$filename = 'images/' . $_GET['file'] .'.jpg';
+$img = imagecreatefromjpeg($filename);
+if (!$img) {
+    die('Error loading image.');
 }
+
+$w = isset($_GET['width']) ? $_GET['width'] : 500;
+$newimg = imagescale($img,$w);
+
+$fontFile = realpath('font/Lato-Medium.ttf');
+$textColor = imagecolorallocate($newimg,255,255,255);
 
 if(!$_GET['size1']){
     $fontSize1 = 24;
@@ -42,41 +46,16 @@ if (!$_GET['text2']){
 else{
     $text2 = $_GET['text2'];
 }
-
-$textColor = imagecolorallocate($newimg,255,255,255);
-
-if ($text1 != '' || $text2 !=''){
-    
-    imagettftext($newimg,$fontSize1, 0,10,50,$textColor,$fontFile,$text1);
-    // get the image height
-    $imageHeight = imagesy($newImage);
-    // calculate the y-cord for second line of text to be near bottom
-    $bottomTextY = $imageHeight - 20;
-    imagettftext($newimg,$fontSize2, 0,10,$bottomTextY,$textColor,$fontFile,$text2);
-}
-
-imagejpeg($newimg); 
-
-
-
-/* // Define the font size and color for the text
-$fontSize1 = isset($_GET['size1']) ? $_GET['size1'] : 24;
-$fontSize2 = isset($_GET['size2']) ? $_GET['size2'] : 48;
-$textColor = imagecolorallocate($newImage, 255, 255, 255); */
-/* 
-// Add the first line of the text
-imagettftext($newImage, $fontSize1, 0, 10, 50, $textColor, $fontFile, $_GET['text1']);
-
 // get the image height
-$imageHeight = imagesy($newImage);
+$imageHeight = imagesy($newimg);
 // calculate the y-cord for second line of text to be near bottom
 $bottomTextY = $imageHeight - 20;
 
-// and second line of text
-imagettftext($newImage, $fontSize2, 0, 10, $bottomTextY, $textColor, $fontFile, $_GET['text2']);
+    
+imagettftext($newimg,$fontSize1, 0,10,50,$textColor,$fontFile,$text1);
+imagettftext($newimg,$fontSize2, 0,10,$bottomTextY,$textColor,$fontFile,$text2);
 
-// Output the final image
-imagejpeg($newImage);
-imagedestroy($newImage);
-imagedestroy($image); */
+
+imagejpeg($newimg); 
+
 ?>
