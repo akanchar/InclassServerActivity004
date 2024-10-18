@@ -24,7 +24,7 @@
         <label>Select Base Painting:</label>
         <select name="file" id="whichPainting">
             <?php 
-                for ($c=0; $c < count($paintings); $c++){
+                for ($c=0; $c <= count($paintings); $c++){
                     $painting = $paintings[$c];
                     echo '<option value = "' . $painting['filename'] . '"> ' . $painting['title'] . '</option>' ;
                 }
