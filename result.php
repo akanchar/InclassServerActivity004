@@ -28,7 +28,7 @@ $fontFile = realpath('font/Lato-Medium.ttf');
 $textColor = imagecolorallocate($img_resized, 255, 255, 255); // White text
 
 // add meme 1 text to the top of the image
-imagettftext($img_resized, $size1, 0, 10, 40, $textColor, $fontFile, $text1);
+imagettftext($img_resized, $size1, 0, 10, 64, $textColor, $fontFile, $text1);
 
 // add meme 2 text to the bottom of the image
 $img_height = imagesy($img_resized);
