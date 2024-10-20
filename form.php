@@ -25,7 +25,12 @@
     <form action="result.php" method="get">
         <label>Select Base Painting:</label>
         <select name="file" id="whichPainting">
-        
+        <?php 
+                for ($c=0; $c <= count($paintings); $c++){
+                    $painting = $paintings[$c];
+                    echo '<option value = "' . $painting['filename'] . '"> ' . $painting['title'] . '</option>' ;
+                }
+            ?>
         </select>
         <label>Meme 1 Text:</label>
         <input type="text" name="text1" size=50 value="Default text" />
