@@ -8,14 +8,16 @@ include 'data.inc.php';
     <title>Fine Art Meme Maker</title>   
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800" rel="stylesheet">    
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/severactivity.js"></script>
+    <script src="js/serveractivity.js"></script>
 </head>
 <body>
    <h1>Fine Art Meme Maker</h1> 
+
    <section class="grid-container">
        <?php
+       // Loop through paintings to generate thumbnail images
        foreach ($paintings as $painting) {
-           echo '<img src="result.php?file=' . $painting['filename'] . '&width=100" data-value="' . $painting['filename'] . '">';
+           echo '<img src="result.php?file=' . $painting['filename'] . '&width=100" data-value="' . $painting['filename'] . '" alt="' . $painting['title'] . '">';
        }
        ?>
    </section>     
@@ -24,6 +26,7 @@ include 'data.inc.php';
        <label>Select Base Painting:</label>
        <select name="file" id="whichPainting">
            <?php
+           // Loop through paintings to generate the select options
            foreach ($paintings as $painting) {
                echo '<option value="' . $painting['filename'] . '">' . $painting['title'] . '</option>';
            }

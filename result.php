@@ -17,7 +17,7 @@ if (isset($_GET['file']) && isset($_GET['text1']) && isset($_GET['size1']) && is
     $painting = array_shift($painting); // Extract the painting from the filtered result
 
     // Set the image file path based on the filename
-    $imagePath = "images/{$filename}.jpg"; // Make sure your image files are stored in the "images" directory
+    $imagePath = "images/{$filename}.jpg"; // Ensure images are stored in "images" directory
     
     if (file_exists($imagePath)) {
         // Load the image
@@ -27,13 +27,13 @@ if (isset($_GET['file']) && isset($_GET['text1']) && isset($_GET['size1']) && is
         $origWidth = imagesx($image);
         $origHeight = imagesy($image);
         
-        // Scale the image to the specified width, keeping aspect ratio
+        // Scale the image to the specified width, maintaining aspect ratio
         $newHeight = ($width / $origWidth) * $origHeight;
         $scaledImage = imagescale($image, $width, $newHeight);
 
         // Add text to the image
-        $textColor = imagecolorallocate($scaledImage, 255, 255, 255); // White text
-        $font = __DIR__ . '/fonts/arial.ttf'; // Make sure you have a font file here
+        $textColor = imagecolorallocate($scaledImage, 255, 255, 255); // White text color
+        $font = __DIR__ . '/fonts/arial.ttf'; // Ensure a font file is available
         
         // Add Meme 1 text
         imagettftext($scaledImage, $size1, 0, 10, 30, $textColor, $font, $text1);
@@ -41,7 +41,7 @@ if (isset($_GET['file']) && isset($_GET['text1']) && isset($_GET['size1']) && is
         // Add Meme 2 text
         imagettftext($scaledImage, $size2, 0, 10, $newHeight - 30, $textColor, $font, $text2);
 
-        // Output the image
+        // Output the image as JPEG
         header("Content-Type: image/jpeg");
         imagejpeg($scaledImage);
         
