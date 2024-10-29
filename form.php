@@ -1,7 +1,5 @@
 <?php
   include 'data.inc.php';
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,18 +7,29 @@
     <meta charset="utf-8"/>  
     <title>Lab 12</title>   
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800" rel="stylesheet">    
-    <link rel="stylesheet" href="css/ch12-proj3.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/severactivity.js"></script>
 </head>
 <body>
     <h1>Fine Art Meme Maker</h1> 
     <section class="grid-container">
-
-    </section>     
+        <?php
+        foreach ($paintings as $painting) {
+            echo '<img src="result.php?file=' . $painting['filename'] . '&width=100&text1=&text2=&size1=&size2=" alt="' . $painting['title'] . '" data-value="' . $painting['filename'] . '" style="margin: 5px;"/>';
+        }
+        ?>
+    </section>    
+    
     <form action="result.php" method="get">
         <label>Select Base Painting:</label>
         <select name="file" id="whichPainting">
-
+            <?php 
+                for ($c=0; $c <= count($paintings); $c++){
+                    $painting = $paintings[$c];
+                    echo '<option value = "' . $painting['filename'] . '"> ' . $painting['title'] . '</option>' ;
+                }
+            ?>
+        
         </select>
         <label>Meme 1 Text:</label>
         <input type="text" name="text1" size=50 value="Default text" />
